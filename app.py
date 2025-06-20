@@ -27,7 +27,7 @@ def get_top_10_songs():
         if title_tag and artist_tag:
             song = title_tag.get_text(strip=True)
             artist = artist_tag.get_text(strip=True)
-            songs.append(f"<em>{song}</em> by {artist}")
+            songs.append(f"<i>{song}</i> by {artist}")
         if len(songs) == 10:
             break
 
