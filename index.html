@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Billboard Top 10</title>
+</head>
+<body>
+  <h2>Enter Your Birthday</h2>
+  <input type="date" id="birthday" />
+  <button onclick="getSongs()">Get Songs</button>
+  <ul id="results"></ul>
+
+  <script>
+    async function getSongs() {
+      const birthday = document.getElementById('birthday').value;
+      const response = await fetch(`http://localhost:5000/billboard?date=${birthday}`);
+      const data = await response.json();
+
+      const results = document.getElementById('results');
+      results.innerHTML = "";
+
+      if (data.songs) {
+        data.songs.forEach(song => {
+          const li = document.createElement('li');
+          li.textContent = song;
+          results.appendChild(li);
+        });
+      } else {
+        results.innerHTML = "<li>Could not fetch chart data.</li>";
+      }
+    }
+  </script>
+</body>
+</html>
